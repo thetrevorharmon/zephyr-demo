@@ -10,6 +10,6 @@
     "antlr4": "^4.12.0"
   },
   "scripts": {
-    "make": "antlr4 -Dlanguage=TypeScript Zephyr.g4"
+    "make": "antlr -Dlanguage=TypeScript grammar/Zephyr.g4 -o build/"
   }
 }
