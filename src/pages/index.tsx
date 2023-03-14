@@ -1,7 +1,19 @@
 import * as React from "react";
 import type { HeadFC, PageProps } from "gatsby";
+import { CharStream, CommonTokenStream } from "antlr4";
+import ZephyrLexer from "../../build/grammar/ZephyrLexer";
+import ZephyrParser from "../../build/grammar/ZephyrParser";
 
 const IndexPage: React.FC<PageProps> = () => {
+  const input = "const value = 42;";
+  const chars = new CharStream(input);
+  const lexer = new ZephyrLexer(chars);
+  const tokens = new CommonTokenStream(lexer);
+  const parser = new ZephyrParser(tokens);
+  const tree = parser.getTokenStream();
+
+  console.log(tree);
+
   return (
     <main
       style={{
