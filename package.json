@@ -1,0 +1,12 @@
+{
+  "name": "zephyr-lang",
+  "version": "0.0.1",
+  "description": "A very basic language.",
+  "main": "index.js",
+  "repository": "https://github.com/thetrevorharmon/zephyr-lang.git",
+  "author": "Trevor Harmon <trevor.harmon@shopify.com>",
+  "license": "MIT",
+  "dependencies": {
+    "antlr4": "^4.12.0"
+  }
+}
