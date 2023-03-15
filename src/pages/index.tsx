@@ -1,79 +1,20 @@
 import * as React from "react";
 import type { HeadFC, PageProps } from "gatsby";
 
-import { ZephyrLexer } from "../language/build/ZephyrLexer";
-
-import { CharStreams, CommonTokenStream } from "antlr4ts";
-
-function tokenLookup(tokenIndex: number) {
-  const tokenIndexLookup: { [key: number]: string } = {
-    [ZephyrLexer.CONST]: "CONST",
-    [ZephyrLexer.LET]: "LET",
-    [ZephyrLexer.SEMICOLON]: "SEMICOLON",
-    [ZephyrLexer.ASSIGN]: "ASSIGN",
-    [ZephyrLexer.NUMBER]: "NUMBER",
-    [ZephyrLexer.STRING]: "STRING",
-    [ZephyrLexer.IDENTIFIER]: "IDENTIFIER",
-    [ZephyrLexer.WHITESPACE]: "WHITESPACE",
-  };
-
-  if (tokenIndex in tokenIndexLookup) {
-    return tokenIndexLookup[tokenIndex];
-  }
-
-  return "UNKNOWN";
-}
-
-function getTokens(value: string) {
-  const chars = CharStreams.fromString(value);
-  const lexer = new ZephyrLexer(chars);
-  const tokenStream = new CommonTokenStream(lexer);
-
-  tokenStream.fill();
-
-  return tokenStream.getTokens();
-}
+import { LEXER_CODE, PARSER_CODE, Zephyr } from "../language";
 
 let idCounter = 0;
 function getUniqueId(id: string) {
   return `${id}-${idCounter++}`;
 }
 
-const lexerCode = `lexer grammar ZephyrLexer;
-
-CONST : 'const' ;
-LET : 'let' ;
-
-QUOTE : '\'' ;
-EQUALS: '=' ;
-SEMICOLON: ';' ;
-
-NUMBER : [0-9]+ ;
-STRING: QUOTE .*? QUOTE;
-IDENTIFIER: [a-zA-Z]+ ;
-WHITESPACE: [ \\t\\n\\r\\f]+ -> skip ;`;
-
-const parserCode = `parser grammar ZephyrParser;
-
-program : statement* ;
-
-statement : keyword identifier assign expression terminator ;
-
-expression : NUMBER | IDENTIFIER | STRING;
-
-keyword: CONST | LET ;
-
-identifier: IDENTIFIER;
-assign: EQUALS;
-terminator: SEMICOLON;
-`;
-
 const IndexPage: React.FC<PageProps> = () => {
   const [value, setValue] = React.useState(
     "const value = 42;\nlet test = 'hi';"
   );
 
-  const tokens = getTokens(value);
+  const zephyr = new Zephyr();
+  const tokens = zephyr.getTokens(value);
 
   const table = tokens.map((token) => {
     const {
@@ -153,7 +94,7 @@ const IndexPage: React.FC<PageProps> = () => {
               {Object.entries(row).map(([key, value]) => {
                 const formattedValue =
                   key === "type" && typeof value === "number"
-                    ? `${value} : ${tokenLookup(value)}`
+                    ? `${value} : ${zephyr.getTokenType(value)}`
                     : value;
                 return (
                   <td key={getUniqueId(String(value))} style={cellStyle}>
@@ -169,11 +110,11 @@ const IndexPage: React.FC<PageProps> = () => {
       <h2>Grammar</h2>
       <h3>Lexer</h3>
       <pre style={{ background: "#f8f8f8", padding: "1rem" }}>
-        <code>{lexerCode}</code>
+        <code>{LEXER_CODE}</code>
       </pre>
       <h3 style={{ marginTop: 32 }}>Parser</h3>
       <pre style={{ background: "#f8f8f8", padding: "1rem" }}>
-        <code>{parserCode}</code>
+        <code>{PARSER_CODE}</code>
       </pre>
     </main>
   );
