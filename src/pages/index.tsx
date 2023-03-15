@@ -1,9 +1,7 @@
 import * as React from "react";
 import type { HeadFC, PageProps } from "gatsby";
-// import { CharStream, CommonTokenStream } from "antlr4";
-import { ZephyrLexer } from "../../build/antlr-gen/ZephyrLexer";
-import { ZephyrParser } from "../../build/antlr-gen/ZephyrParser";
-
+import { ZephyrLexer } from "../language/ZephyrLexer";
+import { ZephyrParser } from "../language/ZephyrParser";
 import { CharStreams, CommonTokenStream } from "antlr4ts";
 
 const IndexPage: React.FC<PageProps> = () => {
