@@ -2,15 +2,18 @@ import * as React from "react";
 import type { HeadFC, PageProps } from "gatsby";
 
 import { LEXER_CODE, PARSER_CODE, Zephyr } from "../language";
+import { zephyr } from "../extensions";
 import { getUniqueId } from "../utilities";
+
+import CodeEditor from "@uiw/react-codemirror";
 
 const IndexPage: React.FC<PageProps> = () => {
   const [value, setValue] = React.useState(
-    "const value = 42;\nlet test = 'hi';"
+    "const value = 42;\nlet test = 'hi';\n\n\n"
   );
 
-  const zephyr = new Zephyr();
-  const tokens = zephyr.getTokens(value);
+  const zephyrInstance = new Zephyr();
+  const tokens = zephyrInstance.getTokens(value);
 
   const table = tokens.map((token) => {
     const {
@@ -59,11 +62,14 @@ const IndexPage: React.FC<PageProps> = () => {
         🌬️ Zephyr
       </h1>
 
-      <textarea
-        style={{ width: "100%", minHeight: "100px", marginBottom: 32 }}
-        onChange={(event) => setValue(event.target.value)}
-        value={value}
-      />
+      <div style={{ border: "1px solid #ccc", marginBottom: 32 }}>
+        <CodeEditor
+          value={value}
+          // extensions={[zephyr]}
+          onChange={(value) => setValue(value)}
+          indentWithTab={false}
+        />
+      </div>
 
       <table
         style={{
@@ -90,7 +96,7 @@ const IndexPage: React.FC<PageProps> = () => {
               {Object.entries(row).map(([key, value]) => {
                 const formattedValue =
                   key === "type" && typeof value === "number"
-                    ? `${value} : ${zephyr.getTokenType(value)}`
+                    ? `${value} : ${zephyrInstance.getTokenType(value)}`
                     : value;
                 return (
                   <td key={getUniqueId(String(value))} style={cellStyle}>

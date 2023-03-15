@@ -17,6 +17,9 @@
     "make": "antlr4ts grammar/ZephyrLexer.g4 -visitor grammar/ZephyrParser.g4 -o src/language/build -Xexact-output-dir"
   },
   "dependencies": {
+    "@codemirror/language": "^6.6.0",
+    "@lezer/common": "^1.0.2",
+    "@uiw/react-codemirror": "^4.19.9",
     "antlr4": "^4.12.0",
     "antlr4-c3": "2.2.1",
     "antlr4ts": "0.5.0-alpha.4",

@@ -1,26 +1,16 @@
 import { CharStreams, CommonTokenStream } from "antlr4ts";
 import { ZephyrLexer } from "./build/ZephyrLexer";
-
-export enum Token {
-  Const = "const",
-  Let = "let",
-  Semicolon = "semicolon",
-  Assign = "assign",
-  Number = "number",
-  String = "string",
-  Identifier = "identifier",
-  Unknown = "unknown",
-}
+import { Token } from "./types";
 
 export class Zephyr {
   private lexerTokenToTokenLookup: { [key: number]: Token } = {
-    [ZephyrLexer.CONST]: Token.Const,
-    [ZephyrLexer.LET]: Token.Let,
-    [ZephyrLexer.SEMICOLON]: Token.Semicolon,
-    [ZephyrLexer.ASSIGN]: Token.Assign,
-    [ZephyrLexer.NUMBER]: Token.Number,
-    [ZephyrLexer.STRING]: Token.String,
-    [ZephyrLexer.IDENTIFIER]: Token.Identifier,
+    [ZephyrLexer.CONST]: "const",
+    [ZephyrLexer.LET]: "let",
+    [ZephyrLexer.SEMICOLON]: "semicolon",
+    [ZephyrLexer.ASSIGN]: "assign",
+    [ZephyrLexer.NUMBER]: "number",
+    [ZephyrLexer.STRING]: "string",
+    [ZephyrLexer.IDENTIFIER]: "identifier",
   };
 
   constructor() {}
@@ -40,6 +30,6 @@ export class Zephyr {
       return this.lexerTokenToTokenLookup[tokenIndex];
     }
 
-    return Token.Unknown;
+    return "unknown";
   }
 }
