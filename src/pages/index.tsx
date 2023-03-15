@@ -5,19 +5,47 @@ import { ZephyrParser } from "../language/ZephyrParser";
 import { CharStreams, CommonTokenStream } from "antlr4ts";
 
 const IndexPage: React.FC<PageProps> = () => {
-  const input = "const value = 42;";
+  const input = `const value = 42;
+const test = 'hi';`;
+
+  const [value, setValue] = React.useState(input);
 
   // Create the lexer and parser
-  let chars = CharStreams.fromString(input);
+  let chars = CharStreams.fromString(value);
   let lexer = new ZephyrLexer(chars);
   let tokenStream = new CommonTokenStream(lexer);
-  let parser = new ZephyrParser(tokenStream);
+  tokenStream.fill();
 
-  // // Parse the input, where `compilationUnit` is whatever entry point you defined
-  let tree = parser;
+  const tokens = tokenStream.getTokens();
 
-  // console.log(input, chars, lexer, tokenStream, parser, tree);
-  console.log(tokenStream.getTokens());
+  const table = tokens.map((token) => {
+    const {
+      text,
+      type,
+      startIndex,
+      stopIndex,
+      tokenIndex,
+      line,
+      charPositionInLine,
+    } = token;
+    return {
+      text,
+      type,
+      startIndex,
+      stopIndex,
+      tokenIndex,
+      line,
+      charPositionInLine,
+    };
+  });
+
+  const tableHeadings = Object.keys(table[0]);
+
+  const cellStyle = {
+    padding: "0.25rem 0.5rem",
+    border: "1px solid #ccc",
+    borderWidth: "0 0 1px 1px",
+  };
 
   return (
     <main
@@ -36,6 +64,40 @@ const IndexPage: React.FC<PageProps> = () => {
       >
         🌬️ Zephyr
       </h1>
+
+      <textarea
+        style={{ width: "100%", minHeight: "100px" }}
+        onChange={(event) => setValue(event.target.value)}
+      >
+        {value}
+      </textarea>
+
+      <p>
+        <table
+          style={{
+            width: "100%",
+            border: "1px solid #ccc",
+            borderWidth: "1px 1px 0 0",
+          }}
+          cellPadding={0}
+          cellSpacing={0}
+        >
+          <thead style={{ marginBottom: "1rem", background: "#eee" }}>
+            {tableHeadings.map((heading) => (
+              <td style={cellStyle}>{heading}</td>
+            ))}
+          </thead>
+          <tbody>
+            {table.map((row) => (
+              <tr>
+                {Object.values(row).map((value) => (
+                  <td style={cellStyle}>{value}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </p>
     </main>
   );
 };
