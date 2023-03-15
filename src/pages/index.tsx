@@ -9,8 +9,18 @@ function getTokens(value: string) {
   let lexer = new ZephyrLexer(chars);
   let tokenStream = new CommonTokenStream(lexer);
   tokenStream.fill();
+  let parser = new ZephyrParser(tokenStream);
+
+  parser.buildParseTree = true;
+
+  console.log(parser.program());
 
   return tokenStream.getTokens();
+}
+
+let idCounter = 0;
+function getUniqueId(id: string) {
+  return `${id}-${idCounter++}`;
 }
 
 const lexerCode = `lexer grammar ZephyrLexer;
@@ -99,36 +109,39 @@ const IndexPage: React.FC<PageProps> = () => {
       <textarea
         style={{ width: "100%", minHeight: "100px" }}
         onChange={(event) => setValue(event.target.value)}
-      >
-        {value}
-      </textarea>
+        value={value}
+      />
 
-      <p>
-        <table
-          style={{
-            width: "100%",
-            border: "1px solid #ccc",
-            borderWidth: "1px 1px 0 0",
-          }}
-          cellPadding={0}
-          cellSpacing={0}
-        >
-          <thead style={{ marginBottom: "1rem", background: "#eee" }}>
+      <table
+        style={{
+          width: "100%",
+          border: "1px solid #ccc",
+          borderWidth: "1px 1px 0 0",
+        }}
+        cellPadding={0}
+        cellSpacing={0}
+      >
+        <thead style={{ marginBottom: "1rem", background: "#eee" }}>
+          <tr>
             {tableHeadings.map((heading) => (
-              <td style={cellStyle}>{heading}</td>
+              <th key={getUniqueId(heading)} style={cellStyle}>
+                {heading}
+              </th>
             ))}
-          </thead>
-          <tbody>
-            {table.map((row) => (
-              <tr>
-                {Object.values(row).map((value) => (
-                  <td style={cellStyle}>{value}</td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </p>
+          </tr>
+        </thead>
+        <tbody>
+          {table.map((row) => (
+            <tr key={getUniqueId(row.text ?? "")}>
+              {Object.values(row).map((value) => (
+                <td key={getUniqueId(String(value))} style={cellStyle}>
+                  {value}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
 
       <h2>Grammar</h2>
       <h3>Lexer</h3>
