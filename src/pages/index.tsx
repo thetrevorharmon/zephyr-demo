@@ -6,7 +6,7 @@ import { CharStreams, CommonTokenStream } from "antlr4ts";
 
 const IndexPage: React.FC<PageProps> = () => {
   const input = `const value = 42;
-const test = 'hi';`;
+let test = 'hi';`;
 
   const [value, setValue] = React.useState(input);
 
