@@ -14,18 +14,26 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "typecheck": "tsc --noEmit",
-    "make": "antlr -Dlanguage=TypeScript grammar/Zephyr.g4 -o build/"
+    "make": "antlr4ts grammar/ZephyrLexer.g4 -visitor grammar/ZephyrParser.g4 -o build/antlr-gen -Xexact-output-dir"
   },
   "dependencies": {
     "antlr4": "^4.12.0",
+    "antlr4-c3": "2.2.1",
+    "antlr4ts": "0.5.0-alpha.4",
+    "assert": "^2.0.0",
+    "buffer": "^6.0.3",
     "gatsby": "^5.7.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "util": "^0.12.5"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.20.2",
     "@types/node": "^18.15.0",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
+    "antlr4ts-cli": "^0.5.0-alpha.4",
+    "babel-preset-gatsby": "^3.7.0",
     "typescript": "^4.9.5"
   }
 }
