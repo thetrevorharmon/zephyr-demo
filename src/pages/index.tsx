@@ -4,19 +4,21 @@ import { ZephyrLexer } from "../language/ZephyrLexer";
 import { ZephyrParser } from "../language/ZephyrParser";
 import { CharStreams, CommonTokenStream } from "antlr4ts";
 
-const IndexPage: React.FC<PageProps> = () => {
-  const input = `const value = 42;
-let test = 'hi';`;
-
-  const [value, setValue] = React.useState(input);
-
-  // Create the lexer and parser
+function getTokens(value: string) {
   let chars = CharStreams.fromString(value);
   let lexer = new ZephyrLexer(chars);
   let tokenStream = new CommonTokenStream(lexer);
   tokenStream.fill();
 
-  const tokens = tokenStream.getTokens();
+  return tokenStream.getTokens();
+}
+
+const IndexPage: React.FC<PageProps> = () => {
+  const [value, setValue] = React.useState(
+    "const value = 42;\nlet test = 'hi';"
+  );
+
+  const tokens = getTokens(value);
 
   const table = tokens.map((token) => {
     const {
