@@ -13,6 +13,35 @@ function getTokens(value: string) {
   return tokenStream.getTokens();
 }
 
+const lexerCode = `lexer grammar ZephyrLexer;
+
+CONST : 'const' ;
+LET : 'let' ;
+
+QUOTE : '\'' ;
+EQUALS: '=' ;
+SEMICOLON: ';' ;
+
+NUMBER : [0-9]+ ;
+STRING: QUOTE .*? QUOTE;
+IDENTIFIER: [a-zA-Z]+ ;
+WHITESPACE: [ \\t\\n\\r\\f]+ -> skip ;`;
+
+const parserCode = `parser grammar ZephyrParser;
+
+program : statement* ;
+
+statement : keyword identifier assign expression terminator ;
+
+expression : NUMBER | IDENTIFIER | STRING;
+
+keyword: CONST | LET ;
+
+identifier: IDENTIFIER;
+assign: EQUALS;
+terminator: SEMICOLON;
+`;
+
 const IndexPage: React.FC<PageProps> = () => {
   const [value, setValue] = React.useState(
     "const value = 42;\nlet test = 'hi';"
@@ -100,6 +129,16 @@ const IndexPage: React.FC<PageProps> = () => {
           </tbody>
         </table>
       </p>
+
+      <h2>Grammar</h2>
+      <h3>Lexer</h3>
+      <pre>
+        <code>{lexerCode}</code>
+      </pre>
+      <h3>Parser</h3>
+      <pre>
+        <code>{parserCode}</code>
+      </pre>
     </main>
   );
 };
