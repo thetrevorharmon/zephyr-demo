@@ -4,17 +4,30 @@ import { ZephyrLexer } from "../language/ZephyrLexer";
 import { ZephyrParser } from "../language/ZephyrParser";
 import { CharStreams, CommonTokenStream } from "antlr4ts";
 
+function tokenLookup(tokenIndex: number) {
+  const tokenIndexLookup: { [key: number]: string } = {
+    [ZephyrLexer.CONST]: "CONST",
+    [ZephyrLexer.LET]: "LET",
+    [ZephyrLexer.SEMICOLON]: "SEMICOLON",
+    [ZephyrLexer.ASSIGN]: "ASSIGN",
+    [ZephyrLexer.NUMBER]: "NUMBER",
+    [ZephyrLexer.STRING]: "STRING",
+    [ZephyrLexer.IDENTIFIER]: "IDENTIFIER",
+    [ZephyrLexer.WHITESPACE]: "WHITESPACE",
+  };
+
+  if (Object.keys(tokenIndexLookup).includes(String(tokenIndex))) {
+    return tokenIndexLookup[tokenIndex];
+  }
+
+  return "UNKNOWN";
+}
+
 function getTokens(value: string) {
   let chars = CharStreams.fromString(value);
   let lexer = new ZephyrLexer(chars);
   let tokenStream = new CommonTokenStream(lexer);
   tokenStream.fill();
-  let parser = new ZephyrParser(tokenStream);
-
-  parser.buildParseTree = true;
-
-  console.log(parser.program());
-
   return tokenStream.getTokens();
 }
 
@@ -133,11 +146,17 @@ const IndexPage: React.FC<PageProps> = () => {
         <tbody>
           {table.map((row) => (
             <tr key={getUniqueId(row.text ?? "")}>
-              {Object.values(row).map((value) => (
-                <td key={getUniqueId(String(value))} style={cellStyle}>
-                  {value}
-                </td>
-              ))}
+              {Object.entries(row).map(([key, value]) => {
+                const formattedValue =
+                  key === "type" && typeof value === "number"
+                    ? `${value} : ${tokenLookup(value)}`
+                    : value;
+                return (
+                  <td key={getUniqueId(String(value))} style={cellStyle}>
+                    {formattedValue}
+                  </td>
+                );
+              })}
             </tr>
           ))}
         </tbody>

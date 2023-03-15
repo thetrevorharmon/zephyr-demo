@@ -3,11 +3,10 @@ lexer grammar ZephyrLexer;
 CONST : 'const' ;
 LET : 'let' ;
 
-QUOTE : '\'' ;
-EQUALS: '=' ;
+ASSIGN: '=' ;
 SEMICOLON: ';' ;
 
 NUMBER : [0-9]+ ;
-STRING: QUOTE .*? QUOTE;
+STRING: '\'' .*? '\'';
 IDENTIFIER: [a-zA-Z]+ ;
 WHITESPACE: [ \t\n\r\f]+ -> skip ;
