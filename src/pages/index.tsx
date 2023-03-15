@@ -2,11 +2,7 @@ import * as React from "react";
 import type { HeadFC, PageProps } from "gatsby";
 
 import { LEXER_CODE, PARSER_CODE, Zephyr } from "../language";
-
-let idCounter = 0;
-function getUniqueId(id: string) {
-  return `${id}-${idCounter++}`;
-}
+import { getUniqueId } from "../utilities";
 
 const IndexPage: React.FC<PageProps> = () => {
   const [value, setValue] = React.useState(
