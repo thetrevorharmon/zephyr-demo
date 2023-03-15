@@ -1,7 +1,8 @@
 import * as React from "react";
 import type { HeadFC, PageProps } from "gatsby";
-import { ZephyrLexer } from "../language/ZephyrLexer";
-import { ZephyrParser } from "../language/ZephyrParser";
+
+import { ZephyrLexer } from "../language/build/ZephyrLexer";
+
 import { CharStreams, CommonTokenStream } from "antlr4ts";
 
 function tokenLookup(tokenIndex: number) {
@@ -16,7 +17,7 @@ function tokenLookup(tokenIndex: number) {
     [ZephyrLexer.WHITESPACE]: "WHITESPACE",
   };
 
-  if (Object.keys(tokenIndexLookup).includes(String(tokenIndex))) {
+  if (tokenIndex in tokenIndexLookup) {
     return tokenIndexLookup[tokenIndex];
   }
 
@@ -24,10 +25,12 @@ function tokenLookup(tokenIndex: number) {
 }
 
 function getTokens(value: string) {
-  let chars = CharStreams.fromString(value);
-  let lexer = new ZephyrLexer(chars);
-  let tokenStream = new CommonTokenStream(lexer);
+  const chars = CharStreams.fromString(value);
+  const lexer = new ZephyrLexer(chars);
+  const tokenStream = new CommonTokenStream(lexer);
+
   tokenStream.fill();
+
   return tokenStream.getTokens();
 }
 
@@ -120,7 +123,7 @@ const IndexPage: React.FC<PageProps> = () => {
       </h1>
 
       <textarea
-        style={{ width: "100%", minHeight: "100px" }}
+        style={{ width: "100%", minHeight: "100px", marginBottom: 32 }}
         onChange={(event) => setValue(event.target.value)}
         value={value}
       />
@@ -130,6 +133,7 @@ const IndexPage: React.FC<PageProps> = () => {
           width: "100%",
           border: "1px solid #ccc",
           borderWidth: "1px 1px 0 0",
+          marginBottom: 64,
         }}
         cellPadding={0}
         cellSpacing={0}
@@ -164,11 +168,11 @@ const IndexPage: React.FC<PageProps> = () => {
 
       <h2>Grammar</h2>
       <h3>Lexer</h3>
-      <pre>
+      <pre style={{ background: "#f8f8f8", padding: "1rem" }}>
         <code>{lexerCode}</code>
       </pre>
-      <h3>Parser</h3>
-      <pre>
+      <h3 style={{ marginTop: 32 }}>Parser</h3>
+      <pre style={{ background: "#f8f8f8", padding: "1rem" }}>
         <code>{parserCode}</code>
       </pre>
     </main>
