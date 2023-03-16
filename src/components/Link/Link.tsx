@@ -10,7 +10,7 @@ export function Link({
   return (
     <a
       href={href}
-      className="text-blue-700"
+      className="text-blue-700 underline"
       target="_blank"
       rel="noopener noreferral"
     >

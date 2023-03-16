@@ -9,7 +9,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Work Sans", ...defaultTheme.fontFamily.sans],
+        // sans: ["Work Sans", ...defaultTheme.fontFamily.sans],
         display: ["Shrikhand", ...defaultTheme.fontFamily.sans],
         mono: ["Source Code Pro", ...defaultTheme.fontFamily.mono],
         serif: ["Source Serif Pro", ...defaultTheme.fontFamily.serif],

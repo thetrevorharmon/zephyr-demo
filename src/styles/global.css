@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+div::-webkit-scrollbar {
+  width: 0.5em;
+  border-left: 1px solid theme('colors.slate.400');;
+}
+
+div::-webkit-scrollbar-track {
+  background: none
+}
+
+div::-webkit-scrollbar-thumb {
+  background-color: theme('colors.slate.500');
+  border-radius: 20px;
+  outline: none;
+  margin: 1px;
+  
+}
