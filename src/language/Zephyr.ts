@@ -15,7 +15,7 @@ export class Zephyr {
 
   constructor() {}
 
-  public getTokens(value: string) {
+  public getTokenStream(value: string) {
     const chars = CharStreams.fromString(value);
     const lexer = new ZephyrLexer(chars);
     const tokenStream = new CommonTokenStream(lexer);
@@ -25,7 +25,7 @@ export class Zephyr {
     return tokenStream.getTokens();
   }
 
-  public getTokenType(tokenIndex: number): Token {
+  public getTokenTypeForIndex(tokenIndex: number): Token {
     if (tokenIndex in this.lexerTokenToTokenLookup) {
       return this.lexerTokenToTokenLookup[tokenIndex];
     }

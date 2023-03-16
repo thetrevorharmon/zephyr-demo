@@ -13,7 +13,7 @@ const IndexPage: React.FC<PageProps> = () => {
   );
 
   const zephyrInstance = new Zephyr();
-  const tokens = zephyrInstance.getTokens(value);
+  const tokens = zephyrInstance.getTokenStream(value);
 
   const table = tokens.map((token) => {
     const {
@@ -65,7 +65,7 @@ const IndexPage: React.FC<PageProps> = () => {
       <div style={{ border: "1px solid #ccc", marginBottom: 32 }}>
         <CodeEditor
           value={value}
-          // extensions={[zephyr]}
+          extensions={[zephyr]}
           onChange={(value) => setValue(value)}
           indentWithTab={false}
         />
@@ -96,7 +96,7 @@ const IndexPage: React.FC<PageProps> = () => {
               {Object.entries(row).map(([key, value]) => {
                 const formattedValue =
                   key === "type" && typeof value === "number"
-                    ? `${value} : ${zephyrInstance.getTokenType(value)}`
+                    ? `${value} : ${zephyrInstance.getTokenTypeForIndex(value)}`
                     : value;
                 return (
                   <td key={getUniqueId(String(value))} style={cellStyle}>
