@@ -13,15 +13,15 @@ const IndexPage: React.FC<PageProps> = () => {
   );
 
   return (
-    <main className="m-10 mx-auto max-w-5xl text-slate-700 font-serif">
-      <h1 className="mt-64 mb-3 text-8xl font-display font-extrabold text-blue-900 lowercase">
+    <main className="container mx-auto px-5 max-w-5xl text-slate-700 font-serif">
+      <h1 className="mt-32 md:mt-64 mb-3 text-6xl md:text-8xl font-display font-extrabold text-blue-900 lowercase">
         Zephyr
       </h1>
       <h2 className="mb-20 text-lg leading-5 text-slate-400">
         CodeMirror 6 meets ANTLR
       </h2>
 
-      <div className="space-y-6 mb-24 max-w-3xl text-lg">
+      <div className="space-y-6 mb-24 max-w-3xl text-md md:text-lg">
         <p>👋 Hello there!</p>
         <p>
           Zephyr is a tiny language written in an{" "}
@@ -35,10 +35,10 @@ const IndexPage: React.FC<PageProps> = () => {
         <p>
           CodeMirror 6 was built around{" "}
           <Link href="https://lezer.codemirror.net/">Lezer</Link>, its own
-          parser system. The writer of Lezer has added support to many common
-          languages. However, in cases where you need to use a different parser
-          system (such as one that you've already written), how do you connect
-          that to CodeMirror 6?
+          parser system. Lezer has support for common languages, and has a
+          grammar syntax if you want to use Lezer. But, what if you've already
+          written a grammar and parser, and don't want to rewrite it for
+          CodeMirror 6 compatibility?
         </p>
         <p>
           This demo shows how to do just that–
@@ -47,11 +47,11 @@ const IndexPage: React.FC<PageProps> = () => {
           </Link>{" "}
           to see how it works.
         </p>
-        <p className="pt-20">
-          Wondering why it's called Zephyr? I asked ChatGPT to make up a name
-          and it said:
+        <p className="pt-8 md:pt-20">
+          Why “Zephyr”? I asked ChatGPT to make up a name for this little
+          language and it said:
           <blockquote className="text-slate-400 border-slate-200 mt-3 pl-4 border-l-8">
-            How about "Zephyr"? It suggests a fresh, light, and airy language
+            How about “Zephyr”? It suggests a fresh, light, and airy language
             that can help developers build software quickly and easily. It also
             sounds distinct and memorable, which can help it stand out in a
             crowded programming language landscape.
@@ -59,7 +59,7 @@ const IndexPage: React.FC<PageProps> = () => {
         </p>
       </div>
 
-      <h2 className="mt-24 mb-5 text-5xl font-display font-extrabold text-blue-900 lowercase">
+      <h2 className="mt-24 mb-5 text-3xl md:text-5xl font-display font-extrabold text-blue-900 lowercase">
         Editor
       </h2>
       <div style={{ border: "1px solid #ccc", marginBottom: 32 }}>
@@ -75,11 +75,11 @@ const IndexPage: React.FC<PageProps> = () => {
         <TokenTable document={value} />
       </div>
 
-      <h3 className="mt-24 mb-3 text-5xl font-display font-extrabold text-blue-900 lowercase">
+      <h3 className="mt-24 mb-3 text-3xl md:text-5xl font-display font-extrabold text-blue-900 lowercase">
         Lexer
       </h3>
       <Code>{LEXER_CODE}</Code>
-      <h3 className="mt-24 mb-3 text-5xl font-display font-extrabold text-blue-900 lowercase">
+      <h3 className="mt-24 mb-3 text-3xl md:text-5xl font-display font-extrabold text-blue-900 lowercase">
         Parser
       </h3>
       <Code>{PARSER_CODE}</Code>
