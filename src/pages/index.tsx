@@ -17,23 +17,13 @@ const IndexPage: React.FC<PageProps> = () => {
   const tokens = zephyrInstance.getTokenStream(value);
 
   const table = tokens.map((token) => {
-    const {
-      text,
-      type,
-      startIndex,
-      stopIndex,
-      tokenIndex,
-      line,
-      charPositionInLine,
-    } = token;
+    const { text, type, startIndex, stopIndex } = token;
     return {
       text,
-      type,
+      typeIndex: type,
+      typeName: zephyrInstance.getTokenTypeForIndex(type),
       startIndex,
       stopIndex,
-      tokenIndex,
-      line,
-      charPositionInLine,
     };
   });
 
@@ -77,10 +67,14 @@ const IndexPage: React.FC<PageProps> = () => {
         cellPadding={0}
         cellSpacing={0}
       >
-        <thead style={{ marginBottom: "1rem", background: "#eee" }}>
+        <thead style={{ marginBottom: "1rem" }} className="bg-gray-200">
           <tr>
             {tableHeadings.map((heading) => (
-              <th key={getUniqueId(heading)} style={cellStyle}>
+              <th
+                key={getUniqueId(heading)}
+                style={cellStyle}
+                className="text-left"
+              >
                 {heading}
               </th>
             ))}
@@ -88,18 +82,16 @@ const IndexPage: React.FC<PageProps> = () => {
         </thead>
         <tbody>
           {table.map((row) => (
-            <tr key={getUniqueId(row.text ?? "")}>
-              {Object.entries(row).map(([key, value]) => {
-                const formattedValue =
-                  key === "type" && typeof value === "number"
-                    ? `${value} : ${zephyrInstance.getTokenTypeForIndex(value)}`
-                    : value;
-                return (
-                  <td key={getUniqueId(String(value))} style={cellStyle}>
-                    {formattedValue}
-                  </td>
-                );
-              })}
+            <tr key={getUniqueId(row.text ?? "")} className="even:bg-gray-100">
+              {Object.entries(row).map(([key, value]) => (
+                <td
+                  key={getUniqueId(String(value))}
+                  style={cellStyle}
+                  className="font-mono text-sm"
+                >
+                  {value}
+                </td>
+              ))}
             </tr>
           ))}
         </tbody>

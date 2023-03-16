@@ -30,9 +30,7 @@
 
 code[class*="language-"],
 pre[class*="language-"] {
-	background: hsl(230, 1%, 98%);
 	color: hsl(230, 8%, 24%);
-	font-family: "Fira Code", "Fira Mono", Menlo, Consolas, "DejaVu Sans Mono", monospace;
 	direction: ltr;
 	text-align: left;
 	white-space: pre;
@@ -52,29 +50,24 @@ pre[class*="language-"] {
 code[class*="language-"]::-moz-selection,
 code[class*="language-"] *::-moz-selection,
 pre[class*="language-"] *::-moz-selection {
-	background: hsl(230, 1%, 90%);
 	color: inherit;
 }
 
 code[class*="language-"]::selection,
 code[class*="language-"] *::selection,
 pre[class*="language-"] *::selection {
-	background: hsl(230, 1%, 90%);
 	color: inherit;
 }
 
 /* Code blocks */
 pre[class*="language-"] {
-	padding: 1em;
 	margin: 0.5em 0;
 	overflow: auto;
-	border-radius: 0.3em;
 }
 
 /* Inline code */
 :not(pre) > code[class*="language-"] {
 	padding: 0.2em 0.3em;
-	border-radius: 0.3em;
 	white-space: normal;
 }
 
@@ -87,7 +80,7 @@ pre[class*="language-"] {
 .token.doctype,
 .token.punctuation,
 .token.entity {
-	color: hsl(230, 8%, 24%);
+	color: theme('colors.neutral.600');
 }
 
 .token.attr-name,
@@ -96,11 +89,11 @@ pre[class*="language-"] {
 .token.constant,
 .token.number,
 .token.atrule {
-	color: hsl(35, 99%, 36%);
+	color: theme('colors.amber.600');
 }
 
 .token.keyword {
-	color: hsl(301, 63%, 40%);
+	color: theme('colors.purple.600')
 }
 
 .token.property,
@@ -119,13 +112,13 @@ pre[class*="language-"] {
 .token.regex,
 .token.attr-value,
 .token.attr-value > .token.punctuation {
-	color: hsl(119, 34%, 47%);
+  color: theme('colors.lime.600')
 }
 
 .token.variable,
 .token.operator,
 .token.function {
-	color: hsl(221, 87%, 60%);
+    color: theme('colors.cyan.600')
 }
 
 .token.url {
@@ -262,7 +255,6 @@ div.code-toolbar > .toolbar.toolbar > .toolbar-item > span {
 	background: hsl(230, 1%, 90%);
 	color: hsl(230, 6%, 44%);
 	padding: 0.1em 0.4em;
-	border-radius: 0.3em;
 }
 
 div.code-toolbar > .toolbar.toolbar > .toolbar-item > button:hover,
@@ -287,7 +279,6 @@ div.code-toolbar > .toolbar.toolbar > .toolbar-item > span:focus {
 	background: hsl(230, 1%, 90%);
 	color: hsl(230, 8%, 24%);
 	padding: 0.1em 0.6em;
-	border-radius: 0.3em;
 	box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.2); /* same as Toolbar plugin default */
 }
 
@@ -388,7 +379,6 @@ pre > code.diff-highlight .token.token.inserted:not(.prefix) *::selection {
 .prism-previewer-color.prism-previewer-color:before,
 .prism-previewer-gradient.prism-previewer-gradient div,
 .prism-previewer-easing.prism-previewer-easing:before {
-	border-radius: 0.3em;
 }
 
 /* Triangles pointing to the code */
