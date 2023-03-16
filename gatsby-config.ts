@@ -14,14 +14,7 @@ const config: GatsbyConfig = {
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
-        fonts: [
-          "Source Code Pro:400",
-          "Source Sans Pro:200,400,800",
-          "Source Serif Pro:400",
-          "Work Sans:400",
-          "Shrikhand:400",
-          `Barlow\:400,700`, // you can also specify font weights and styles
-        ],
+        fonts: ["Source Code Pro:400", "Source Serif Pro:400", "Shrikhand:400"],
         display: "swap",
       },
     },
