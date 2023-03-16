@@ -4,7 +4,7 @@ import type { HeadFC, PageProps } from "gatsby";
 import { LEXER_CODE, PARSER_CODE, Zephyr } from "../language";
 import { zephyr } from "../extensions";
 import { getUniqueId } from "../utilities";
-import { Code } from "../components";
+import { Code, Link } from "../components";
 
 import CodeEditor from "@uiw/react-codemirror";
 
@@ -36,17 +36,30 @@ const IndexPage: React.FC<PageProps> = () => {
   };
 
   return (
-    <main className="m-10 mx-auto max-w-5xl">
-      <h1
-        style={{
-          marginTop: 0,
-          marginBottom: 64,
-          maxWidth: 320,
-        }}
-        className="text-2xl font-extrabold"
-      >
-        🌬️ Zephyr
+    <main className="m-10 mx-auto max-w-5xl text-slate-700">
+      <h1 className="mt-64 mb-3 text-8xl font-display font-extrabold text-blue-900">
+        zephyr
       </h1>
+      <h2 className="font-sans mb-20 text-lg leading-5 text-slate-400">
+        CodeMirror 6 meets ANTLR
+      </h2>
+
+      <div className="space-y-3 mb-24 max-w-2xl font-serif">
+        <p>👋 Hello there!</p>
+        <p>
+          This is a small demo to show how to connect{" "}
+          <Link href="https://codemirror.net/">CodeMirror 6</Link> to other
+          language servers. CodeMirror 6 was built around{" "}
+          <Link href="https://lezer.codemirror.net/">Lezer</Link>, its own
+          parser system. However, in cases where you need to use a different
+          parser system (such as one that already exists), how do you connect
+          that to CodeMirror 6?
+        </p>
+        <p>
+          This demo shows how to do that–view the source on GitHub to see how it
+          works.
+        </p>
+      </div>
 
       <div style={{ border: "1px solid #ccc", marginBottom: 32 }}>
         <CodeEditor
@@ -97,7 +110,9 @@ const IndexPage: React.FC<PageProps> = () => {
         </tbody>
       </table>
 
-      <h2>Grammar</h2>
+      <h2 className="mt-24 mb-1 text-3xl font-display font-extrabold text-blue-900">
+        grammar
+      </h2>
       <h3>Lexer</h3>
       <Code>{LEXER_CODE}</Code>
       <h3 style={{ marginTop: 32 }}>Parser</h3>
