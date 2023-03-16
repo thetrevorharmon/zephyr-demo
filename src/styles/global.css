@@ -19,3 +19,7 @@ div::-webkit-scrollbar-thumb {
   margin: 1px;
   
 }
+
+body {
+  background-color: theme('colors.slate.50');
+}

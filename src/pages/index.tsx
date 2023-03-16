@@ -1,10 +1,9 @@
 import * as React from "react";
 import type { HeadFC, PageProps } from "gatsby";
 
-import { LEXER_CODE, PARSER_CODE, Zephyr } from "../language";
+import { LEXER_CODE, PARSER_CODE } from "../language";
 import { zephyr } from "../extensions";
-import { getUniqueId } from "../utilities";
-import { Code, Link } from "../components";
+import { Code, Link, TokenTable } from "../components";
 
 import CodeEditor from "@uiw/react-codemirror";
 
@@ -12,30 +11,6 @@ const IndexPage: React.FC<PageProps> = () => {
   const [value, setValue] = React.useState(
     "const value = 42;\nlet test = 'hi';\n\n\n"
   );
-
-  const zephyrInstance = new Zephyr();
-  const tokens = zephyrInstance.getTokenStream(value);
-
-  const table = tokens.map((token) => {
-    const { text, type, startIndex, stopIndex } = token;
-    return {
-      text,
-      typeIndex: type,
-      typeName: zephyrInstance.getTokenTypeForIndex(type),
-      startIndex,
-      stopIndex,
-    };
-  });
-
-  const tableHeadings = Object.keys(table[0]);
-
-  const cellStyle = {
-    padding: "0.25rem 0.5rem",
-    border: "1px solid #ccc",
-    borderWidth: "0 0 1px 1px",
-  };
-
-  const cellClass = "px-2 py-3 border border-slate-400";
 
   return (
     <main className="m-10 mx-auto max-w-5xl text-slate-700 font-serif">
@@ -46,15 +21,16 @@ const IndexPage: React.FC<PageProps> = () => {
         CodeMirror 6 meets ANTLR
       </h2>
 
-      <div className="space-y-3 mb-24 max-w-2xl">
+      <div className="space-y-6 mb-24 max-w-3xl text-lg">
         <p>👋 Hello there!</p>
         <p>
           Zephyr is a tiny language written in an{" "}
           <Link href="https://www.antlr.org/">ANTLR</Link> grammar with a very
-          thin layer of logic on top of what you get out of the box from ANTLR.
-          The goal of this little language is to be used as an example for
-          connecting <Link href="https://codemirror.net/">CodeMirror 6</Link> to
-          an ANTLR style grammar.
+          thin layer on top of what you get out of the box from ANTLR
+          (basically, the bare minimum). The goal of this little language is to
+          be used as an example for connecting{" "}
+          <Link href="https://codemirror.net/">CodeMirror 6</Link> to an ANTLR
+          style grammar.
         </p>
         <p>
           CodeMirror 6 was built around{" "}
@@ -83,7 +59,7 @@ const IndexPage: React.FC<PageProps> = () => {
         </p>
       </div>
 
-      <h2 className="mt-24 mb-5 text-4xl font-display font-extrabold text-blue-900 lowercase">
+      <h2 className="mt-24 mb-5 text-5xl font-display font-extrabold text-blue-900 lowercase">
         Editor
       </h2>
       <div style={{ border: "1px solid #ccc", marginBottom: 32 }}>
@@ -96,44 +72,14 @@ const IndexPage: React.FC<PageProps> = () => {
       </div>
 
       <div className="max-h-80 overflow-y-auto rounded-md mb-32 border border-slate-400">
-        <table cellPadding={0} cellSpacing={0} className="w-full text-sm">
-          <thead className="bg-slate-200">
-            <tr>
-              {tableHeadings.map((heading) => (
-                <th
-                  key={getUniqueId(heading)}
-                  className="px-2 py-1.5 border first:border-l-0 border-r-0 border-t-0 border-slate-400 text-left font-sans"
-                >
-                  {heading}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {table.map((row) => (
-              <tr
-                key={getUniqueId(row.text ?? "")}
-                className="even:bg-slate-100"
-              >
-                {Object.entries(row).map(([key, value]) => (
-                  <td
-                    key={getUniqueId(String(value))}
-                    className="px-2 py-1.5 border first:border-l-0  border-r-0 border-b-0 border-slate-400 text-left font-mono"
-                  >
-                    {value}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <TokenTable document={value} />
       </div>
 
-      <h3 className="mt-24 mb-3 text-4xl font-display font-extrabold text-blue-900 lowercase">
+      <h3 className="mt-24 mb-3 text-5xl font-display font-extrabold text-blue-900 lowercase">
         Lexer
       </h3>
       <Code>{LEXER_CODE}</Code>
-      <h3 className="mt-24 mb-3 text-4xl font-display font-extrabold text-blue-900 lowercase">
+      <h3 className="mt-24 mb-3 text-5xl font-display font-extrabold text-blue-900 lowercase">
         Parser
       </h3>
       <Code>{PARSER_CODE}</Code>
