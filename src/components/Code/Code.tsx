@@ -1,6 +1,8 @@
 import React, { ReactNode } from "react";
 import { highlightAll, languages } from "prismjs";
 
+import "./Code.css";
+
 export function Code({ children }: { children: ReactNode }) {
   React.useEffect(() => {
     highlightAll();
