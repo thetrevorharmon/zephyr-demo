@@ -4,6 +4,7 @@ import type { HeadFC, PageProps } from "gatsby";
 import { LEXER_CODE, PARSER_CODE, Zephyr } from "../language";
 import { zephyr } from "../extensions";
 import { getUniqueId } from "../utilities";
+import { Code } from "../components";
 
 import CodeEditor from "@uiw/react-codemirror";
 
@@ -45,19 +46,14 @@ const IndexPage: React.FC<PageProps> = () => {
   };
 
   return (
-    <main
-      style={{
-        color: "#232129",
-        padding: 96,
-        fontFamily: "-apple-system, Roboto, sans-serif, serif",
-      }}
-    >
+    <main className="m-10 mx-auto max-w-5xl">
       <h1
         style={{
           marginTop: 0,
           marginBottom: 64,
           maxWidth: 320,
         }}
+        className="text-2xl font-extrabold"
       >
         🌬️ Zephyr
       </h1>
@@ -111,13 +107,9 @@ const IndexPage: React.FC<PageProps> = () => {
 
       <h2>Grammar</h2>
       <h3>Lexer</h3>
-      <pre style={{ background: "#f8f8f8", padding: "1rem" }}>
-        <code>{LEXER_CODE}</code>
-      </pre>
+      <Code>{LEXER_CODE}</Code>
       <h3 style={{ marginTop: 32 }}>Parser</h3>
-      <pre style={{ background: "#f8f8f8", padding: "1rem" }}>
-        <code>{PARSER_CODE}</code>
-      </pre>
+      <Code>{PARSER_CODE}</Code>
     </main>
   );
 };

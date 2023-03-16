@@ -21,5 +21,12 @@
         }
       }
     ]
+  ],
+  "plugins": [
+    ["prismjs", {
+        "languages": ["javascript", "css", "markup", "g4"],
+        "plugins": ["line-numbers"],
+        "theme": "okaidia"
+    }]
   ]
 }
