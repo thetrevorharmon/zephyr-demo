@@ -19,6 +19,12 @@ const config: GatsbyConfig = {
       },
     },
     "gatsby-plugin-netlify",
+    {
+      resolve: "gatsby-plugin-manifest",
+      options: {
+        icon: "./src/images/favicon.png",
+      },
+    },
   ],
 };
 

@@ -5253,6 +5253,17 @@ gatsby-plugin-google-fonts@^1.0.1:
   resolved "https://registry.yarnpkg.com/gatsby-plugin-google-fonts/-/gatsby-plugin-google-fonts-1.0.1.tgz#d71054f7bf207b9a8da227380369e18e6f4e0201"
   integrity sha512-p1NVkn27GUnDA5qHM+Z4cCcLCJIardzZXMon3640sT4xuL/AZJbsx3HEt2KY/5oZu0UXIkytkxzV2Da4rQeUIg==
 
+gatsby-plugin-manifest@^5.7.0:
+  version "5.7.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-manifest/-/gatsby-plugin-manifest-5.7.0.tgz#254580801c8ad9081abed0a99115ed5fb931be62"
+  integrity sha512-UiMKCqIOLUFvjJsny0wOMCQWs/Wx0BXmBTQ7Ck1HJsgvq4N3yKTlwAlgu1+eV/ExcpESKc6bncKZFUibwnE/QA==
+  dependencies:
+    "@babel/runtime" "^7.20.13"
+    gatsby-core-utils "^4.7.0"
+    gatsby-plugin-utils "^4.7.0"
+    semver "^7.3.8"
+    sharp "^0.31.3"
+
 gatsby-plugin-netlify@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-netlify/-/gatsby-plugin-netlify-5.1.0.tgz#a681b7fafef4f5ae026a72c3bfe01c8f395e52b8"
