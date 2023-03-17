@@ -31,11 +31,14 @@ export function Editor({ value, setValue }: Props) {
     ".cm-gutters": {
       color: tailwindConfig.theme.colors.slate["500"],
       borderColor: tailwindConfig.theme.colors.slate["500"],
-      paddingLeft: tailwindConfig.theme.margin["1"],
+      // paddingLeft: tailwindConfig.theme.margin["1"],
       backgroundColor: tailwindConfig.theme.colors.slate["200"],
     },
     ".cm-activeLine": {
       backgroundColor: tailwindConfig.theme.colors.slate["100"],
+    },
+    ".cm-lineNumbers .cm-gutterElement": {
+      padding: `0 ${tailwindConfig.theme.margin["2"]} 0 ${tailwindConfig.theme.margin["2"]}`,
     },
     ".cm-activeLineGutter": {
       backgroundColor: "transparent",
@@ -52,6 +55,26 @@ export function Editor({ value, setValue }: Props) {
       extensions={[zephyr, theme]}
       onChange={handleOnChange}
       indentWithTab={false}
+      basicSetup={{
+        foldGutter: false,
+        lineNumbers: true,
+        highlightActiveLineGutter: true,
+        dropCursor: false,
+        allowMultipleSelections: false,
+        indentOnInput: false,
+        bracketMatching: false,
+        closeBrackets: false,
+        autocompletion: false,
+        rectangularSelection: false,
+        crosshairCursor: false,
+        highlightActiveLine: true,
+        highlightSelectionMatches: false,
+        closeBracketsKeymap: false,
+        searchKeymap: false,
+        foldKeymap: false,
+        completionKeymap: false,
+        lintKeymap: false,
+      }}
     />
   );
 }

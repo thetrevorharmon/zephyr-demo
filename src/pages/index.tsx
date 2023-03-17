@@ -25,7 +25,7 @@ const myFirstVariable = 1000;
 // And \`let\` works for variable assignments, too:
 let anotherVariable = 'This is another variable!';
 
-// That's all of the features. Edit this code to try it out!`);
+// That's it. Edit this code to try it out!`);
 
   return (
     <main className="container mx-auto px-5 max-w-3xl text-slate-700 font-serif space-y-32">
