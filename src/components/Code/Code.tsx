@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { highlightAll, languages } from "prismjs";
+import { highlightAll } from "prismjs";
 
 import "./Code.css";
 

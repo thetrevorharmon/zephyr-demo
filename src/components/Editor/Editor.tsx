@@ -31,7 +31,6 @@ export function Editor({ value, setValue }: Props) {
     ".cm-gutters": {
       color: tailwindConfig.theme.colors.slate["500"],
       borderColor: tailwindConfig.theme.colors.slate["500"],
-      // paddingLeft: tailwindConfig.theme.margin["1"],
       backgroundColor: tailwindConfig.theme.colors.slate["200"],
     },
     ".cm-activeLine": {

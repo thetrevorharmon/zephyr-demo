@@ -1,4 +1,3 @@
-import { Token } from "antlr4ts";
 import React from "react";
 import { Zephyr, ZephyrToken } from "../../language";
 import { getUniqueId } from "../../utilities";
