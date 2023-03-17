@@ -41,8 +41,8 @@ export function Editor({ value, setValue }: Props) {
       backgroundColor: "transparent",
     },
     ".cm-gutterElement.cm-activeLineGutter": {
-      color: tailwindConfig.theme.colors.slate["900"],
-      fontWeight: "bold",
+      color: tailwindConfig.theme.colors.blue["900"],
+      fontWeight: "800",
     },
   });
 
