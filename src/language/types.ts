@@ -3,6 +3,8 @@ const supportedTokens = [
   "let",
   "semicolon",
   "assign",
+  "blockComment",
+  "lineComment",
   "number",
   "string",
   "identifier",

@@ -50,13 +50,13 @@ pre[class*="language-"] {
 code[class*="language-"]::-moz-selection,
 code[class*="language-"] *::-moz-selection,
 pre[class*="language-"] *::-moz-selection {
-	color: inherit;
+	background-color: theme('colors.slate.200');
 }
 
 code[class*="language-"]::selection,
 code[class*="language-"] *::selection,
 pre[class*="language-"] *::selection {
-	color: inherit;
+	background-color: theme('colors.slate.200');
 }
 
 /* Code blocks */
@@ -338,14 +338,14 @@ pre.diff-highlight > code .token.token.deleted:not(.prefix)::-moz-selection,
 pre.diff-highlight > code .token.token.deleted:not(.prefix) *::-moz-selection,
 pre > code.diff-highlight .token.token.deleted:not(.prefix)::-moz-selection,
 pre > code.diff-highlight .token.token.deleted:not(.prefix) *::-moz-selection {
-	background-color: hsla(353, 95%, 66%, 0.25);
+	background-color: theme('colors.slate.200');
 }
 
 pre.diff-highlight > code .token.token.deleted:not(.prefix)::selection,
 pre.diff-highlight > code .token.token.deleted:not(.prefix) *::selection,
 pre > code.diff-highlight .token.token.deleted:not(.prefix)::selection,
 pre > code.diff-highlight .token.token.deleted:not(.prefix) *::selection {
-	background-color: hsla(353, 95%, 66%, 0.25);
+	background-color: theme('colors.slate.200');
 }
 
 pre.diff-highlight > code .token.token.inserted:not(.prefix),

@@ -3,16 +3,22 @@
 @tailwind utilities;
 
 
-div::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 0.5em;
-  border-left: 1px solid theme('colors.slate.400');;
+  height: 0.5em;
+  border-left: 1px solid theme('colors.slate.400');
+  background-color: 1px solid theme('colors.slate.900');
 }
 
-div::-webkit-scrollbar-track {
-  background: none
+::-webkit-scrollbar-track {
+  background: theme('colors.slate.300');
 }
 
-div::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-corner {
+  background: theme('colors.slate.300');
+}
+
+::-webkit-scrollbar-thumb {
   background-color: theme('colors.slate.500');
   border-radius: 20px;
   outline: none;

@@ -8,6 +8,8 @@ export class Zephyr {
     [ZephyrLexer.LET]: "let",
     [ZephyrLexer.SEMICOLON]: "semicolon",
     [ZephyrLexer.ASSIGN]: "assign",
+    [ZephyrLexer.BLOCK_COMMENT]: "blockComment",
+    [ZephyrLexer.LINE_COMMENT]: "lineComment",
     [ZephyrLexer.NUMBER]: "number",
     [ZephyrLexer.STRING]: "string",
     [ZephyrLexer.IDENTIFIER]: "identifier",

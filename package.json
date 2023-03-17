@@ -17,6 +17,7 @@
     "make": "antlr4ts grammar/ZephyrLexer.g4 -visitor grammar/ZephyrParser.g4 -o src/language/build -Xexact-output-dir"
   },
   "dependencies": {
+    "@codemirror/commands": "^6.2.2",
     "@codemirror/language": "^6.6.0",
     "@lezer/common": "^1.0.2",
     "@lezer/highlight": "^1.1.3",

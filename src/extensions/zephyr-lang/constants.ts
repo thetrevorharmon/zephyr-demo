@@ -12,6 +12,8 @@ export const zephyrTokenToNodeType: { [key in ZephyrToken]: NodeType } = {
   string: NodeType.define({ id: 6, name: "string" }),
   identifier: NodeType.define({ id: 7, name: "identifier" }),
   unknown: NodeType.define({ id: 8, name: "unknown" }),
+  blockComment: NodeType.define({ id: 9, name: "blockComment" }),
+  lineComment: NodeType.define({ id: 10, name: "lineComment" }),
 };
 
 export const parserAdapterNodeSet = new NodeSet(
@@ -24,5 +26,7 @@ export const parserAdapterNodeSet = new NodeSet(
     number: tags.number,
     string: tags.string,
     identifier: tags.variableName,
+    blockComment: tags.comment,
+    lineComment: tags.comment,
   })
 );

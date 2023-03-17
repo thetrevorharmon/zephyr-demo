@@ -2,23 +2,41 @@ import * as React from "react";
 import type { HeadFC, PageProps } from "gatsby";
 
 import { LEXER_CODE, PARSER_CODE } from "../language";
-import { Code, Link, TokenTable, Editor } from "../components";
+import { Code, Link, TokenTable, Editor, Header } from "../components";
 
 const IndexPage: React.FC<PageProps> = () => {
-  const [value, setValue] = React.useState(
-    "const value = 42;\nlet test = 'hi';\n\n\n"
-  );
+  const [value, setValue] = React.useState(`/*
+  Welcome to Zephyr!
+
+  This is a little toy language to show how to connect
+  an ANTLR language server to CodeMirror 6.
+
+  • It supports variable assignment & comments.
+  • Semicolons are required at the end of statements.
+  • Only numbers and strings can be assigned to variables.
+
+  Here's a block comment!
+*/
+// It also supports line comments, if you prefer those.
+
+// You can do variable assignments with \`const\`:
+const myFirstVariable = 1;
+
+// And \`let\` works for variable assignments, too:
+let anotherVariable = 'This is another variable!';
+
+// That's all of the features. Edit this code to try it out!`);
 
   return (
-    <main className="container mx-auto px-5 max-w-5xl text-slate-700 font-serif">
-      <h1 className="mt-32 md:mt-64 mb-3 text-6xl md:text-8xl font-display font-extrabold text-blue-900 lowercase">
-        Zephyr
-      </h1>
-      <h2 className="mb-20 text-lg leading-5 text-slate-400">
-        CodeMirror 6 meets ANTLR
-      </h2>
+    <main className="container mx-auto px-5 max-w-3xl text-slate-700 font-serif space-y-32">
+      <section className="mt-32 md:mt-64 space-y-3">
+        <Header size="lg">Zephyr</Header>
+        <p className="text-lg leading-5 text-slate-400">
+          CodeMirror 6 meets ANTLR
+        </p>
+      </section>
 
-      <div className="space-y-12 md:space-y-20 mb-24 max-w-3xl text-md md:text-lg">
+      <section className="space-y-12 md:space-y-20 text-md md:text-lg">
         <div className="space-y-6">
           <p>👋 Hello there!</p>
           <p>
@@ -58,27 +76,49 @@ const IndexPage: React.FC<PageProps> = () => {
             crowded programming language landscape.
           </blockquote>
         </div>
-      </div>
+      </section>
 
-      <h2 className="mt-24 mb-5 text-3xl md:text-5xl font-display font-extrabold text-blue-900 lowercase">
-        Editor
-      </h2>
-      <div className="mb-24">
-        <Editor value={value} setValue={(value) => setValue(value)} />
-      </div>
+      <section className="space-y-16">
+        <div className="space-y-5">
+          <Header size="md">Editor</Header>
 
-      <div className="max-h-80 overflow-y-auto rounded-md mb-32 border border-slate-400">
-        <TokenTable document={value} />
-      </div>
+          <Editor value={value} setValue={(value) => setValue(value)} />
+        </div>
 
-      <h3 className="mt-24 mb-3 text-3xl md:text-5xl font-display font-extrabold text-blue-900 lowercase">
-        Lexer
-      </h3>
-      <Code>{LEXER_CODE}</Code>
-      <h3 className="mt-24 mb-3 text-3xl md:text-5xl font-display font-extrabold text-blue-900 lowercase">
-        Parser
-      </h3>
-      <Code>{PARSER_CODE}</Code>
+        <div className="space-y-6">
+          <div className="space-y-2">
+            <Header size="sm">Token Preview</Header>
+            <p>
+              This table includes a live preview of all of the tokens in the
+              editor.
+              <span>&nbsp;</span>
+              <br className="hidden md:block" />
+              Change the editor to see the tokens change!
+            </p>
+          </div>
+          <div className="max-h-80 overflow-y-auto rounded-md mb-32 border border-slate-400">
+            <TokenTable document={value} />
+          </div>
+        </div>
+      </section>
+
+      <section className="space-y-10">
+        <div className="space-y-5">
+          <Header size="md">Grammar</Header>
+          <p>
+            This is the ANTLR grammar for Zephyr–it's used to generate the
+            langauge server.
+          </p>
+        </div>
+        <div className="space-y-3">
+          <Header size="sm">Lexer</Header>
+          <Code>{LEXER_CODE}</Code>
+        </div>
+        <div className="space-y-3">
+          <Header size="sm">Parser</Header>
+          <Code>{PARSER_CODE}</Code>
+        </div>
+      </section>
       <div className="mb-32">&nbsp;</div>
     </main>
   );
