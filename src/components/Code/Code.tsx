@@ -9,7 +9,7 @@ export function Code({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <pre className="px-6 py-6 rounded-md bg-white text-sm border border-slate-300">
+    <pre className="px-6 py-6 rounded-md bg-white text-sm border border-slate-400">
       <code className="language-g4">{children}</code>
     </pre>
   );

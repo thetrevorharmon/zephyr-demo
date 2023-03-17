@@ -2,11 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
 ::-webkit-scrollbar {
   width: 0.5em;
   height: 0.5em;
-  border-left: 1px solid theme('colors.slate.400');
   background-color: 1px solid theme('colors.slate.900');
 }
 
@@ -14,8 +12,17 @@
   background: theme('colors.slate.300');
 }
 
+::-webkit-scrollbar-track:vertical {
+  border-top-right-radius: theme('borderRadius.md');
+}
+
+::-webkit-scrollbar-track:horizontal {
+  border-bottom-left-radius: theme('borderRadius.md');
+}
+
 ::-webkit-scrollbar-corner {
   background: theme('colors.slate.300');
+  border-bottom-right-radius: theme('borderRadius.md');
 }
 
 ::-webkit-scrollbar-thumb {

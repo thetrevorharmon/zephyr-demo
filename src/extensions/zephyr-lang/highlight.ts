@@ -1,21 +1,14 @@
-import {
-  HighlightStyle,
-  syntaxHighlighting as syntaxHighlightingExtension,
-} from "@codemirror/language";
+import { HighlightStyle, syntaxHighlighting } from "@codemirror/language";
 
 import { tags } from "@lezer/highlight";
 
-// const shopifyqlSyntaxHighlighting = HighlightStyle.define([
-//   { tag: tags.keyword, class: tagStyles.Keyword },
-//   { tag: TAGS.fieldArgument, class: tagStyles.FieldArgument },
-//   { tag: TAGS.schemaArgument, class: tagStyles.SchemaArgument },
-//   { tag: TAGS.argument, class: tagStyles.Argument },
-//   { tag: TAGS.identifier, class: tagStyles.Identifier },
-//   { tag: TAGS.operator, class: tagStyles.Operator },
-//   { tag: TAGS.number, class: tagStyles.Number },
-//   { tag: TAGS.connector, class: tagStyles.Connector },
-//   { tag: TAGS.modifier, class: tagStyles.Modifier },
-//   { tag: TAGS.comment, class: tagStyles.Comment },
-//   { tag: TAGS.unknown, class: tagStyles.Unknown },
-//   { tag: TAGS.string, class: tagStyles.String },
-// ]);
+const zephyrColoring = HighlightStyle.define([
+  { tag: tags.comment, class: "text-slate-500" },
+  { tag: tags.keyword, class: "text-fuchsia-700" },
+  { tag: tags.variableName, class: "text-blue-600" },
+  { tag: tags.string, class: "text-lime-600" },
+  { tag: tags.number, class: "text-violet-700" },
+  { tag: tags.operator, class: "text-orange-700" },
+]);
+
+export const zephyrSyntaxHighlight = syntaxHighlighting(zephyrColoring);

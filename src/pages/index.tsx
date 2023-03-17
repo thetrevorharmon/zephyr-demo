@@ -20,7 +20,7 @@ const IndexPage: React.FC<PageProps> = () => {
 // It also supports line comments, if you prefer those.
 
 // You can do variable assignments with \`const\`:
-const myFirstVariable = 1;
+const myFirstVariable = 1000;
 
 // And \`let\` works for variable assignments, too:
 let anotherVariable = 'This is another variable!';
@@ -103,7 +103,7 @@ let anotherVariable = 'This is another variable!';
       </section>
 
       <section className="space-y-10">
-        <div className="space-y-5">
+        <div className="space-y-4">
           <Header size="md">Grammar</Header>
           <p>
             This is the ANTLR grammar for Zephyr–it's used to generate the
