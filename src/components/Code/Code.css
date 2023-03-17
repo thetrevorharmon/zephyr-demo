@@ -80,7 +80,8 @@ pre[class*="language-"] {
 .token.doctype,
 .token.punctuation,
 .token.entity {
-	color: theme('colors.neutral.600');
+	color: theme('colors.slate.700');
+	
 }
 
 .token.attr-name,
@@ -89,11 +90,11 @@ pre[class*="language-"] {
 .token.constant,
 .token.number,
 .token.atrule {
-	color: theme('colors.amber.600');
+	color: theme('colors.blue.600');
 }
 
 .token.keyword {
-	color: theme('colors.purple.600')
+	color: theme('colors.fuchsia.700')
 }
 
 .token.property,
@@ -118,7 +119,7 @@ pre[class*="language-"] {
 .token.variable,
 .token.operator,
 .token.function {
-    color: theme('colors.cyan.600')
+    color: theme('colors.violet.600')
 }
 
 .token.url {

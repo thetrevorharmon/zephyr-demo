@@ -1,7 +1,20 @@
 import { Token } from "antlr4ts";
 import React from "react";
-import { Zephyr } from "../../language";
+import { Zephyr, ZephyrToken } from "../../language";
 import { getUniqueId } from "../../utilities";
+
+const colorClassForToken: { [key in ZephyrToken]: string } = {
+  const: "text-fuchsia-700",
+  let: "text-fuchsia-700",
+  semicolon: "",
+  assign: "text-orange-700",
+  blockComment: "text-slate-500",
+  lineComment: "text-slate-500",
+  number: "text-violet-700",
+  string: "text-lime-600",
+  identifier: "text-blue-600",
+  unknown: "",
+};
 
 export function TokenTable({ document }: { document: string }) {
   const zephyrInstance = new Zephyr();
@@ -40,14 +53,19 @@ export function TokenTable({ document }: { document: string }) {
             key={getUniqueId(row.text ?? "")}
             className="even:bg-slate-100 odd:bg-white"
           >
-            {Object.entries(row).map(([key, value]) => (
-              <td
-                key={getUniqueId(String(value))}
-                className="px-2 py-1.5 border first:border-l-0 border-r-0 border-b-0 border-slate-400 text-left font-mono"
-              >
-                {value}
-              </td>
-            ))}
+            {Object.entries(row).map(([key, value]) => {
+              const className =
+                key === "text" ? colorClassForToken[row.typeName] : "";
+
+              return (
+                <td
+                  key={getUniqueId(String(value))}
+                  className={`px-2 py-1.5 border first:border-l-0 border-r-0 border-b-0 border-slate-400 text-left font-mono ${className}`}
+                >
+                  {value}
+                </td>
+              );
+            })}
           </tr>
         ))}
       </tbody>
