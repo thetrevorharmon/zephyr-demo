@@ -32,7 +32,37 @@ export function TokenTable({ document }: { document: string }) {
 
   const tableHeadings = Object.keys(table[0]);
 
-  return (
+  const mobileMarkup = (
+    <div className="space-y-5 pr-3">
+      {table.map((row) => {
+        const informationList = Object.entries(row).filter(([key, value]) => {
+          return key !== "text";
+        });
+
+        const textColorClass = colorClassForToken[row.typeName];
+
+        return (
+          <div className="border border-slate-300 rounded-md flex flex-col divide-y text-sm font-mono bg-white">
+            <div className={`${textColorClass} p-3`}>{row.text}</div>
+            <div>
+              <ul className="list-none grid grid-flow-col grid-rows-2 gap-1 text-sm justify-between my-1 mx-2">
+                {informationList.map(([key, value], index) => {
+                  return (
+                    <li className={index > 1 ? "text-right" : ""}>
+                      <span className="font-sans font-bold">{key}:</span>&nbsp;
+                      <span>{value}</span>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+
+  const desktopMarkup = (
     <table cellPadding={0} cellSpacing={0} className="w-full text-sm">
       <thead className="bg-slate-200">
         <tr>
@@ -69,5 +99,12 @@ export function TokenTable({ document }: { document: string }) {
         ))}
       </tbody>
     </table>
+  );
+
+  return (
+    <>
+      <div className="block sm:hidden">{mobileMarkup}</div>
+      <div className="hidden sm:block">{desktopMarkup}</div>
+    </>
   );
 }

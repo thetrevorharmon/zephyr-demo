@@ -96,7 +96,7 @@ let anotherVariable = 'This is another variable!';
               Change the editor to see the tokens change!
             </p>
           </div>
-          <div className="max-h-80 overflow-y-auto rounded-md mb-32 border border-slate-400">
+          <div className="max-h-96 sm:max-h-80 overflow-y-auto rounded-md mb-32 sm:border border-slate-400">
             <TokenTable document={value} />
           </div>
         </div>

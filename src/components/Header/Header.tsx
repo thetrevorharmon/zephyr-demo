@@ -8,9 +8,9 @@ interface Props {
 
 function getSizeClassNamesAndTag(size: Props["size"]) {
   const classNames: { [key in Props["size"]]: string } = {
-    sm: "text-xl md:text-3xl text-blue-900",
-    md: "text-3xl md:text-5xl text-blue-800",
-    lg: "text-6xl md:text-8xl text-blue-800",
+    sm: "text-2xl sm:text-3xl text-blue-900",
+    md: "text-3xl sm:text-5xl text-blue-800",
+    lg: "text-6xl sm:text-8xl text-blue-800",
   };
 
   const tags: { [key in Props["size"]]: keyof JSX.IntrinsicElements } = {
