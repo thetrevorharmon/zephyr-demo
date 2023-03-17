@@ -18,6 +18,7 @@ const config: GatsbyConfig = {
         display: "swap",
       },
     },
+    "gatsby-plugin-netlify",
   ],
 };
 
