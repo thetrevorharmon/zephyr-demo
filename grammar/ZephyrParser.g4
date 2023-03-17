@@ -9,5 +9,5 @@ expression : NUMBER | IDENTIFIER | STRING;
 keyword: CONST | LET ;
 
 identifier: IDENTIFIER;
-assign: EQUALS;
+assign: ASSIGN;
 terminator: SEMICOLON;

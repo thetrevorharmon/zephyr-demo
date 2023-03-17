@@ -2,10 +2,7 @@ import * as React from "react";
 import type { HeadFC, PageProps } from "gatsby";
 
 import { LEXER_CODE, PARSER_CODE } from "../language";
-import { zephyr } from "../extensions";
-import { Code, Link, TokenTable } from "../components";
-
-import CodeEditor from "@uiw/react-codemirror";
+import { Code, Link, TokenTable, Editor } from "../components";
 
 const IndexPage: React.FC<PageProps> = () => {
   const [value, setValue] = React.useState(
@@ -50,25 +47,20 @@ const IndexPage: React.FC<PageProps> = () => {
         <p className="pt-8 md:pt-20">
           Why “Zephyr”? I asked ChatGPT to make up a name for this little
           language and it said:
-          <blockquote className="text-slate-400 border-slate-200 mt-3 pl-4 border-l-8">
-            How about “Zephyr”? It suggests a fresh, light, and airy language
-            that can help developers build software quickly and easily. It also
-            sounds distinct and memorable, which can help it stand out in a
-            crowded programming language landscape.
-          </blockquote>
         </p>
+        <blockquote className="text-slate-400 border-slate-200 pl-4 border-l-8">
+          How about “Zephyr”? It suggests a fresh, light, and airy language that
+          can help developers build software quickly and easily. It also sounds
+          distinct and memorable, which can help it stand out in a crowded
+          programming language landscape.
+        </blockquote>
       </div>
 
       <h2 className="mt-24 mb-5 text-3xl md:text-5xl font-display font-extrabold text-blue-900 lowercase">
         Editor
       </h2>
-      <div style={{ border: "1px solid #ccc", marginBottom: 32 }}>
-        <CodeEditor
-          value={value}
-          extensions={[zephyr]}
-          onChange={(value) => setValue(value)}
-          indentWithTab={false}
-        />
+      <div className="mb-24">
+        <Editor value={value} setValue={(value) => setValue(value)} />
       </div>
 
       <div className="max-h-80 overflow-y-auto rounded-md mb-32 border border-slate-400">

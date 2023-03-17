@@ -33,7 +33,7 @@ export class ZephyrParser extends Parser {
 	public static readonly STRING = 3;
 	public static readonly CONST = 4;
 	public static readonly LET = 5;
-	public static readonly EQUALS = 6;
+	public static readonly ASSIGN = 6;
 	public static readonly SEMICOLON = 7;
 	public static readonly RULE_program = 0;
 	public static readonly RULE_statement = 1;
@@ -51,7 +51,7 @@ export class ZephyrParser extends Parser {
 	private static readonly _LITERAL_NAMES: Array<string | undefined> = [
 	];
 	private static readonly _SYMBOLIC_NAMES: Array<string | undefined> = [
-		undefined, "NUMBER", "IDENTIFIER", "STRING", "CONST", "LET", "EQUALS", 
+		undefined, "NUMBER", "IDENTIFIER", "STRING", "CONST", "LET", "ASSIGN", 
 		"SEMICOLON",
 	];
 	public static readonly VOCABULARY: Vocabulary = new VocabularyImpl(ZephyrParser._LITERAL_NAMES, ZephyrParser._SYMBOLIC_NAMES, []);
@@ -256,7 +256,7 @@ export class ZephyrParser extends Parser {
 			this.enterOuterAlt(_localctx, 1);
 			{
 			this.state = 32;
-			this.match(ZephyrParser.EQUALS);
+			this.match(ZephyrParser.ASSIGN);
 			}
 		}
 		catch (re) {
@@ -503,7 +503,7 @@ export class IdentifierContext extends ParserRuleContext {
 
 
 export class AssignContext extends ParserRuleContext {
-	public EQUALS(): TerminalNode { return this.getToken(ZephyrParser.EQUALS, 0); }
+	public ASSIGN(): TerminalNode { return this.getToken(ZephyrParser.ASSIGN, 0); }
 	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
 		super(parent, invokingState);
 	}

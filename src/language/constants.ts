@@ -1,28 +1,5 @@
-export const LEXER_CODE = `lexer grammar ZephyrLexer;
+import rawLexer from "../../grammar/ZephyrLexer.g4";
+import rawParser from "../../grammar/ZephyrParser.g4";
 
-CONST : 'const' ;
-LET : 'let' ;
-
-QUOTE : '\'' ;
-EQUALS: '=' ;
-SEMICOLON: ';' ;
-
-NUMBER : [0-9]+ ;
-STRING: QUOTE .*? QUOTE;
-IDENTIFIER: [a-zA-Z]+ ;
-WHITESPACE: [ \\t\\n\\r\\f]+ -> skip ;`;
-
-export const PARSER_CODE = `parser grammar ZephyrParser;
-
-program : statement* ;
-
-statement : keyword identifier assign expression terminator ;
-
-expression : NUMBER | IDENTIFIER | STRING;
-
-keyword: CONST | LET ;
-
-identifier: IDENTIFIER;
-assign: EQUALS;
-terminator: SEMICOLON;
-`;
+export const LEXER_CODE = rawLexer;
+export const PARSER_CODE = rawParser;

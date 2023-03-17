@@ -26,6 +26,7 @@
     "antlr4ts": "0.5.0-alpha.4",
     "assert": "^2.0.0",
     "autoprefixer": "^10.4.14",
+    "babel-plugin-inline-import": "^3.0.0",
     "babel-plugin-prismjs": "^2.1.0",
     "buffer": "^6.0.3",
     "gatsby": "^5.7.0",
