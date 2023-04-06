@@ -1,8 +1,8 @@
 import React from "react";
-import { Zephyr, ZephyrToken } from "../../language";
+import { LanguageServer, Token } from "../../language";
 import { getUniqueId } from "../../utilities";
 
-const colorClassForToken: { [key in ZephyrToken]: string } = {
+const colorClassForToken: { [key in Token]: string } = {
   const: "text-fuchsia-700",
   let: "text-fuchsia-700",
   semicolon: "",
@@ -16,15 +16,15 @@ const colorClassForToken: { [key in ZephyrToken]: string } = {
 };
 
 export function TokenTable({ document }: { document: string }) {
-  const zephyrInstance = new Zephyr();
-  const tokens = zephyrInstance.getTokenStream(document);
+  const languageServer = new LanguageServer();
+  const tokens = languageServer.getTokenStream(document);
 
   const table = tokens.map((token) => {
     const { text, type, startIndex, stopIndex } = token;
     return {
       text,
       typeIndex: type,
-      typeName: zephyrInstance.getTokenTypeForIndex(type),
+      typeName: languageServer.getTokenTypeForIndex(type),
       startIndex,
       stopIndex,
     };

@@ -1,15 +1,15 @@
 import { Parser, Tree, Input, PartialParse, TreeFragment } from "@lezer/common";
 import { Token } from "antlr4ts";
-import { Zephyr } from "../../language";
+import { LanguageServer } from "../../language";
 import { parserAdapterNodeSet, zephyrTokenToNodeType } from "./constants";
 
 const DEFAULT_NODE_GROUP_SIZE = 4;
 
 export class ParserAdapter extends Parser {
-  private language = new Zephyr();
+  private languageServer = new LanguageServer();
 
   private getNodeTypeIdForTokenType(index: number) {
-    const tokenType = this.language.getTokenTypeForIndex(index);
+    const tokenType = this.languageServer.getTokenTypeForIndex(index);
     return zephyrTokenToNodeType[tokenType].id;
   }
 
@@ -39,7 +39,7 @@ export class ParserAdapter extends Parser {
   }
 
   private buildTree(document: string) {
-    const tokens = this.language.getTokenStream(document);
+    const tokens = this.languageServer.getTokenStream(document);
 
     if (tokens.length < 1) {
       return Tree.build({

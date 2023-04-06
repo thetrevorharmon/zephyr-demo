@@ -1,3 +1,3 @@
-import { ZephyrToken as ZephyrTokenType } from "../../language";
+import { Token as ZephyrTokenType } from "../../language";
 
 export type ZephyrToken = ZephyrTokenType | "topNode";

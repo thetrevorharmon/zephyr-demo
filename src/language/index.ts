@@ -1,3 +1,2 @@
-export { Zephyr } from "./Zephyr";
+export { LanguageServer, Token } from "./LanguageServer";
 export { LEXER_CODE, PARSER_CODE } from "./constants";
-export { Token as ZephyrToken } from "./types";
