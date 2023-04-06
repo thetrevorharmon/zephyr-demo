@@ -1,6 +1,6 @@
 import { NodeSet, NodeType } from "@lezer/common";
 import { styleTags, tags } from "@lezer/highlight";
-import { Token } from "../../language";
+import { Token } from "./language";
 
 export const tokenToNodeType: { [key in Token | "topNode"]: NodeType } = {
   topNode: NodeType.define({ id: 0, name: "topNode" }),

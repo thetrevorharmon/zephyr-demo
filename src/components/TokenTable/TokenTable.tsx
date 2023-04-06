@@ -1,5 +1,5 @@
 import React from "react";
-import { LanguageServer, Token } from "../../language";
+import { LanguageServer, Token } from "../../extensions";
 import { getUniqueId } from "../../utilities";
 
 const colorClassForToken: { [key in Token]: string } = {

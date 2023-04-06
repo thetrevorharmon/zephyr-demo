@@ -14,7 +14,7 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "typecheck": "tsc --noEmit",
-    "make": "antlr4ts grammar/ZephyrLexer.g4 -visitor grammar/ZephyrParser.g4 -o src/language/build -Xexact-output-dir"
+    "make": "antlr4ts src/extensions/zephyr/language/grammar/ZephyrLexer.g4 -visitor src/extensions/zephyr/language/grammar/ZephyrParser.g4 -o src/extensions/zephyr/language/build -Xexact-output-dir"
   },
   "dependencies": {
     "@codemirror/commands": "^6.2.2",

@@ -1,6 +1,6 @@
 import { Parser, Tree, Input, PartialParse, TreeFragment } from "@lezer/common";
 import { Token } from "antlr4ts";
-import { LanguageServer } from "../../language";
+import { LanguageServer } from "./language";
 import { parserAdapterNodeSet, tokenToNodeType } from "./constants";
 
 const DEFAULT_NODE_GROUP_SIZE = 4;

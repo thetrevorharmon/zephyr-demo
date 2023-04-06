@@ -1,7 +1,7 @@
 import * as React from "react";
 import type { HeadFC, PageProps } from "gatsby";
 
-import { LEXER_CODE, PARSER_CODE } from "../language";
+import { LEXER_CODE, PARSER_CODE } from "../extensions";
 import { Code, Link, TokenTable, Editor, Header } from "../components";
 
 const IndexPage: React.FC<PageProps> = () => {
@@ -119,7 +119,19 @@ let anotherVariable = 'This is another variable!';
           <Code>{PARSER_CODE}</Code>
         </div>
       </section>
-      <div className="mb-32">&nbsp;</div>
+      <div className="mt-18">
+        <div>
+          Made with ❤️ by{" "}
+          <a
+            className="text-blue-600 underline"
+            href="https://thetrevorharmon.com/"
+          >
+            Trevor Harmon
+          </a>
+          .
+        </div>
+        <div className="mb-5">&nbsp;</div>
+      </div>
     </main>
   );
 };
