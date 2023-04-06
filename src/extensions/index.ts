@@ -1,7 +1,2 @@
-export {
-  zephyr,
-  LanguageServer,
-  Token,
-  LEXER_CODE,
-  PARSER_CODE,
-} from "./zephyr";
+export { zephyr, LanguageServer, LEXER_CODE, PARSER_CODE } from "./zephyr";
+export type { Token } from "./zephyr";

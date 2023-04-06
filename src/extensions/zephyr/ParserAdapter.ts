@@ -13,29 +13,27 @@ export class ParserAdapter extends Parser {
     return tokenToNodeType[tokenType].id;
   }
 
-  private createBufferForTokens(tokens: Token[]) {
-    return tokens.map((token) => {
+  private createBufferFromTokens(tokens: Token[]) {
+    const buffer = [];
+
+    tokens.forEach((token) => {
       const nodeTypeId = this.getNodeTypeIdForTokenType(token.type);
       const startOffset = token.startIndex;
       // Adding 1 to include the character that lies to the right of the stopIndex (which is included in the word)
       const endOffset = token.stopIndex + 1;
 
-      return [nodeTypeId, startOffset, endOffset, DEFAULT_NODE_GROUP_SIZE];
+      buffer.push(nodeTypeId, startOffset, endOffset, DEFAULT_NODE_GROUP_SIZE);
     });
-  }
 
-  private addTopNodeToBuffer(buffer: number[][], document: string) {
-    const id = tokenToNodeType.topNode.id;
-    const startOffset = 0;
-    const endOffset = document.length;
-    const totalBufferLength = buffer.length * DEFAULT_NODE_GROUP_SIZE;
+    const topNodeId = tokenToNodeType.topNode.id;
+    const startOffset = tokens[0].startIndex;
+    const endOffest = tokens[tokens.length - 1].stopIndex;
+    const topNodeSize =
+      tokens.length * DEFAULT_NODE_GROUP_SIZE + DEFAULT_NODE_GROUP_SIZE;
 
-    buffer.push([
-      id,
-      startOffset,
-      endOffset,
-      totalBufferLength + DEFAULT_NODE_GROUP_SIZE,
-    ]);
+    buffer.push(topNodeId, startOffset, endOffest, topNodeSize);
+
+    return buffer;
   }
 
   private buildTree(document: string) {
@@ -54,11 +52,10 @@ export class ParserAdapter extends Parser {
       });
     }
 
-    const buffer = this.createBufferForTokens(tokens);
-    this.addTopNodeToBuffer(buffer, document);
+    const buffer = this.createBufferFromTokens(tokens);
 
     return Tree.build({
-      buffer: buffer.flat(),
+      buffer: buffer,
       nodeSet: parserAdapterNodeSet,
       topID: tokenToNodeType.topNode.id,
     });

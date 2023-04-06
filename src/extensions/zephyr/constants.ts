@@ -3,7 +3,7 @@ import { styleTags, tags } from "@lezer/highlight";
 import { Token } from "./language";
 
 export const tokenToNodeType: { [key in Token | "topNode"]: NodeType } = {
-  topNode: NodeType.define({ id: 0, name: "topNode" }),
+  topNode: NodeType.define({ id: 0, name: "topNode", top: true }),
   const: NodeType.define({ id: 1, name: "const" }),
   let: NodeType.define({ id: 2, name: "let" }),
   semicolon: NodeType.define({ id: 3, name: "semicolon" }),
