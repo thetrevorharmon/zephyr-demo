@@ -34,7 +34,7 @@ export function Editor({ value, setValue }: Props) {
       backgroundColor: tailwindConfig.theme.colors.slate["200"],
     },
     ".cm-activeLine": {
-      backgroundColor: tailwindConfig.theme.colors.slate["100"],
+      backgroundColor: tailwindConfig.theme.colors.slate["100"] / 50,
     },
     ".cm-lineNumbers .cm-gutterElement": {
       padding: `0 ${tailwindConfig.theme.margin["2"]} 0 ${tailwindConfig.theme.margin["2"]}`,

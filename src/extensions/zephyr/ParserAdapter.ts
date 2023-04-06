@@ -1,7 +1,7 @@
 import { Parser, Tree, Input, PartialParse, TreeFragment } from "@lezer/common";
 import { Token } from "antlr4ts";
 import { LanguageServer } from "../../language";
-import { parserAdapterNodeSet, zephyrTokenToNodeType } from "./constants";
+import { parserAdapterNodeSet, tokenToNodeType } from "./constants";
 
 const DEFAULT_NODE_GROUP_SIZE = 4;
 
@@ -10,7 +10,7 @@ export class ParserAdapter extends Parser {
 
   private getNodeTypeIdForTokenType(index: number) {
     const tokenType = this.languageServer.getTokenTypeForIndex(index);
-    return zephyrTokenToNodeType[tokenType].id;
+    return tokenToNodeType[tokenType].id;
   }
 
   private createBufferForTokens(tokens: Token[]) {
@@ -25,7 +25,7 @@ export class ParserAdapter extends Parser {
   }
 
   private addTopNodeToBuffer(buffer: number[][], document: string) {
-    const id = zephyrTokenToNodeType.topNode.id;
+    const id = tokenToNodeType.topNode.id;
     const startOffset = 0;
     const endOffset = document.length;
     const totalBufferLength = buffer.length * DEFAULT_NODE_GROUP_SIZE;
@@ -44,13 +44,13 @@ export class ParserAdapter extends Parser {
     if (tokens.length < 1) {
       return Tree.build({
         buffer: [
-          zephyrTokenToNodeType.topNode.id,
+          tokenToNodeType.topNode.id,
           0,
           document.length,
           DEFAULT_NODE_GROUP_SIZE,
         ],
         nodeSet: parserAdapterNodeSet,
-        topID: zephyrTokenToNodeType.topNode.id,
+        topID: tokenToNodeType.topNode.id,
       });
     }
 
@@ -60,7 +60,7 @@ export class ParserAdapter extends Parser {
     return Tree.build({
       buffer: buffer.flat(),
       nodeSet: parserAdapterNodeSet,
-      topID: zephyrTokenToNodeType.topNode.id,
+      topID: tokenToNodeType.topNode.id,
     });
   }
 
