@@ -13,6 +13,7 @@ export const tokenToNodeType: { [key in Token | "topNode"]: NodeType } = {
         languageDataProp,
         defineLanguageFacet({
           commentTokens: { block: { open: "/*", close: "*/" }, line: "//" },
+          closeBrackets: { brackets: ["'"] },
         }),
       ],
     ],
