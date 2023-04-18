@@ -2,7 +2,6 @@ import { Language, LanguageSupport } from "@codemirror/language";
 import { syntaxHighlight } from "./highlight";
 import { ParserAdapter } from "./ParserAdapter";
 import { Facet } from "@codemirror/state";
-import { closeBrackets } from "@codemirror/autocomplete";
 
 const parserAdapter = new ParserAdapter();
 const zephyrLanguage = new Language(
@@ -12,7 +11,4 @@ const zephyrLanguage = new Language(
   "Zephyr"
 );
 
-export const zephyr = new LanguageSupport(zephyrLanguage, [
-  syntaxHighlight,
-  closeBrackets(),
-]);
+export const zephyr = new LanguageSupport(zephyrLanguage, [syntaxHighlight]);

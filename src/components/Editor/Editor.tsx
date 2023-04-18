@@ -4,6 +4,7 @@ import { zephyr } from "../../extensions";
 import { EditorView } from "@codemirror/view";
 
 import { tailwindConfig } from "../../utilities";
+import { closeBrackets } from "@codemirror/autocomplete";
 
 interface Props {
   value: string;
@@ -51,7 +52,7 @@ export function Editor({ value, setValue }: Props) {
   return (
     <CodeEditor
       value={value}
-      extensions={[zephyr, theme]}
+      extensions={[zephyr, theme, closeBrackets()]}
       onChange={handleOnChange}
       indentWithTab={false}
       basicSetup={{
