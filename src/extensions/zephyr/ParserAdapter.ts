@@ -27,7 +27,7 @@ export class ParserAdapter extends Parser {
 
     const topNodeId = tokenToNodeType.topNode.id;
     const startOffset = tokens[0].startIndex;
-    const endOffest = tokens[tokens.length - 1].stopIndex;
+    const endOffest = tokens[tokens.length - 1].stopIndex + 1;
     const topNodeSize =
       tokens.length * DEFAULT_NODE_GROUP_SIZE + DEFAULT_NODE_GROUP_SIZE;
 
