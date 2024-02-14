@@ -107,3 +107,8 @@ dist
 
 public/
 *.d.ts
+
+
+# MacOS
+
+.DS_Store
