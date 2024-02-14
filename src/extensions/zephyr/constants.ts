@@ -3,10 +3,10 @@ import { styleTags, tags } from "@lezer/highlight";
 import { Token } from "./language";
 import { defineLanguageFacet, languageDataProp } from "@codemirror/language";
 
-export const tokenToNodeType: { [key in Token | "topNode"]: NodeType } = {
-  topNode: NodeType.define({
+export const tokenToNodeType: { [key in Token | "document"]: NodeType } = {
+  document: NodeType.define({
     id: 0,
-    name: "topNode",
+    name: "document",
     top: true,
     props: [
       [

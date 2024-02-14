@@ -25,13 +25,13 @@ export class ParserAdapter extends Parser {
       buffer.push(nodeTypeId, startOffset, endOffset, DEFAULT_NODE_GROUP_SIZE);
     });
 
-    const topNodeId = tokenToNodeType.topNode.id;
+    const documentNodeId = tokenToNodeType.document.id;
     const startOffset = tokens[0].startIndex;
     const endOffest = tokens[tokens.length - 1].stopIndex + 1;
-    const topNodeSize =
+    const documentNodeSize =
       tokens.length * DEFAULT_NODE_GROUP_SIZE + DEFAULT_NODE_GROUP_SIZE;
 
-    buffer.push(topNodeId, startOffset, endOffest, topNodeSize);
+    buffer.push(documentNodeId, startOffset, endOffest, documentNodeSize);
 
     return buffer;
   }
@@ -42,13 +42,13 @@ export class ParserAdapter extends Parser {
     if (tokens.length < 1) {
       return Tree.build({
         buffer: [
-          tokenToNodeType.topNode.id,
+          tokenToNodeType.document.id,
           0,
           document.length,
           DEFAULT_NODE_GROUP_SIZE,
         ],
         nodeSet: parserAdapterNodeSet,
-        topID: tokenToNodeType.topNode.id,
+        topID: tokenToNodeType.document.id,
       });
     }
 
@@ -57,7 +57,7 @@ export class ParserAdapter extends Parser {
     return Tree.build({
       buffer: buffer,
       nodeSet: parserAdapterNodeSet,
-      topID: tokenToNodeType.topNode.id,
+      topID: tokenToNodeType.document.id,
     });
   }
 
